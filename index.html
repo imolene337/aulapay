@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucario - Pokémon</title>
+</head>
+<body>
+    <h1 id="pokemon-name">Carregando...</h1>
+    <img id="pokemon-image" src="" alt="Imagem do Pokémon" width="200">
+
+    <script>
+        // Função para pegar os dados da API
+        fetch('https://pokeapi.co/api/v2/pokemon/rayquaza')
+            .then(response => response.json())  // Converte a resposta em JSON
+            .then(data => {
+                // Atribui o nome do Pokémon ao elemento
+                document.getElementById('pokemon-name').textContent = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+                
+                // Atribui a imagem do Pokémon ao elemento <img>
+                document.getElementById('pokemon-image').src = data.sprites.front_default;
+            })
+            .catch(error => {
+                console.error('Erro ao buscar dados:', error);
+                document.getElementById('pokemon-name').textContent = 'Erro ao carregar os dados';
+            });
+    </script>
+</body>
+</html>
